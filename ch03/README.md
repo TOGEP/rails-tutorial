@@ -1,24 +1,43 @@
-# README
+# Ruby on Rails チュートリアルのサンプルアプリケーション
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+これは、次の教材で作られたサンプルアプリケーションをDocker環境で稼働させています。
+[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+（第7版）
+[Michael Hartl](https://www.michaelhartl.com/) 著
 
-Things you may want to cover:
+## ライセンス
 
-* Ruby version
+[Ruby on Rails チュートリアル](https://railstutorial.jp/)内にある
+ソースコードはMITライセンスとBeerwareライセンスのもとで公開されています。
+詳細は [LICENSE.md](LICENSE.md) をご覧ください。
 
-* System dependencies
+## 使い方
 
-* Configuration
+このアプリケーションを動かす場合は、まずはリポジトリを手元にクローンしてください。
+その後、次のコマンドで必要になる RubyGems をインストールします。
 
-* Database creation
+```
+$ docker compose run web gem install bundler -v 2.4.12
+$ docker compose run web bundle _2.4.12_ install
+```
 
-* Database initialization
+その後、データベースへのマイグレーションを実行します。
 
-* How to run the test suite
+```
+$ docker compose run web rails db:migrate
+```
 
-* Services (job queues, cache servers, search engines, etc.)
+最後に、テストを実行してうまく動いているかどうか確認してください。
 
-* Deployment instructions
+```
+$ docker compose run web rails test
+```
 
-* ...
+テストが無事にパスしたら、Railsサーバーを立ち上げる準備が整っているはずです。
+
+```
+$ docker compose run web rails server
+```
+
+詳しくは、[*Ruby on Rails チュートリアル*](https://railstutorial.jp/)
+を参考にしてください。
